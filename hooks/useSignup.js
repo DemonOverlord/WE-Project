@@ -15,7 +15,7 @@ export const useSignup = () => {
         // Update Profile
         await updateProfile(res.user, {
           displayName: username, 
-          photoURL: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`
+          photoURL: `https://api.dicebear.com/8.x/bottts/svg?seed=${username.toLowerCase()}`
         })
 
         // Create User Document
@@ -23,11 +23,11 @@ export const useSignup = () => {
         await setDoc(ref, {
           status: true,
           username,
-          avatar: `https://avatars.dicebear.com/api/bottts/${username.toLowerCase()}.svg`,
+          avatar: `https://api.dicebear.com/8.x/bottts/svg?seed=${username.toLowerCase()}`,
           servers: [],
           last: ''
         })
-    
+        
         // Dispatch Login Action
         dispatch({ type: 'LOGIN', payload: res.user })
       })
